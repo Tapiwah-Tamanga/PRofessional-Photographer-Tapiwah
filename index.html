@@ -527,3 +527,221 @@
         <p>A well-trained photographer who loves photography and excels in capturing the essence of moments that matter.</p>
     </div>
 </section>
+
+<!-- Gallery Section -->
+<section id="samples">
+    <h2>Our Work Samples</h2>
+    
+    <div class="filter-buttons">
+        <button class="filter-btn active" onclick="filterGallery('all')">All</button>
+        <button class="filter-btn" onclick="filterGallery('portrait')">Portraits</button>
+        <button class="filter-btn" onclick="filterGallery('landscape')">Landscapes</button>
+        <button class="filter-btn" onclick="filterGallery('events')">Events</button>
+    </div>
+
+    <div class="gallery">
+        <div class="gallery-item" data-category="portrait" onclick="openLightbox('sample 2.jpg', 'Sample 1')">
+            <img src="sample 2.jpg" alt="Sample 1">
+            <div class="gallery-overlay">
+                <p>Sample 1</p>
+            </div>
+        </div>
+        <div class="gallery-item" data-category="portrait" onclick="openLightbox('sample 3.jpg', 'Tapiwah')">
+            <img src="sample 3.jpg" alt="sample 2">
+            <div class="gallery-overlay">
+                <p>Tapiwah</p>
+            </div>
+        </div>
+        <div class="gallery-item" data-category="portrait" onclick="openLightbox('sample 4.jpg', 'Tapiwah')">
+            <img src="sample 4.jpg" alt="Sample 3">
+            <div class="gallery-overlay">
+                <p>Tapiwah</p>
+            </div>
+        </div>
+        <div class="gallery-item" data-category="portrait" onclick="openLightbox('sample 5.jpg', 'Tapiwah')">
+            <img src="sample 5.jpg" alt="sampe 4">
+            <div class="gallery-overlay">
+                <p>Tapiwah</p>
+            </div>
+        </div>
+        <div class="gallery-item" data-category="landscape" onclick="openLightbox('sample 6 (2).jpg', 'Tapiwah')">
+            <img src="sample 6 (2).jpg" alt="Sample 5">
+            <div class="gallery-overlay">
+                <p>Tapiwah</p>
+            </div>
+        </div>
+        <div class="gallery-item" data-category="landscape" onclick="openLightbox('sample 7.jpg', 'Tapiwah')">
+            <img src="sample 7.jpg" alt="Sample 6">
+            <div class="gallery-overlay">
+                <p>Tapiwah</p>
+            </div>
+        </div>
+        <div class="gallery-item" data-category="events" onclick="openLightbox('sample 8.jpg', 'Tapiwah')">
+            <img src="sample 8.jpg" alt="Sample 3">
+            <div class="gallery-overlay">
+                <p>Tapiwah</p>
+            </div>
+        </div>
+        <div class="gallery-item" data-category="events" onclick="openLightbox('sample 9.jpg', 'Tapiwah')">
+            <img src="sample 9.jpg" alt="Sample 4">
+            <div class="gallery-overlay">
+                <p>Tapiwah</p>
+            </div>
+        </div>
+        <div class="gallery-item" data-category="landscape" onclick="openLightbox('sample 10.jpg', 'tapiwah')">
+            <img src="sample 10.jpg" alt="Sample 2">
+            <div class="gallery-overlay">
+                <p>tapiwah</p>
+            </div>
+        </div>
+        <div class="gallery-item" data-category="portrait" onclick="openLightbox('about.jpg', 'About')">
+            <img src="about.jpg" alt="About">
+            <div class="gallery-overlay">
+                <p>About</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" class="modal">
+    <span class="close-modal" onclick="closeLightbox()">&times;</span>
+    <div style="position: relative;">
+        <img class="modal-content" id="modal-image" src="" alt="">
+        <div class="modal-nav">
+            <button onclick="prevImage()">❮ Prev</button>
+            <button onclick="nextImage()">Next ❯</button>
+        </div>
+    </div>
+    <div class="modal-caption" id="modal-caption"></div>
+</div>
+
+<!-- Video Section -->
+<section id="videos">
+    <h2>Video Production</h2>
+    <div class="video-container">
+        <video controls poster="cover1.jpg">
+            <source src="history.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video controls poster="cover2.jpg">
+            <source src="video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+    <h2>Get In Touch</h2>
+    <p>Let's work together to tell your story through photography</p>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 History Vibe Photography. All rights reserved.</p>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#samples">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</footer>
+
+<script>
+    // Gallery Filter
+    function filterGallery(category) {
+        const items = document.querySelectorAll('.gallery-item');
+        const buttons = document.querySelectorAll('.filter-btn');
+
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        items.forEach(item => {
+            if (category === 'all') {
+                item.style.display = 'block';
+            } else {
+                item.style.display = item.dataset.category === category ? 'block' : 'none';
+            }
+        });
+    }
+
+    // Lightbox Functions
+    let currentImageIndex = 0;
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const images = Array.from(galleryItems).map(item => ({
+        src: item.querySelector('img').src,
+        caption: item.querySelector('.gallery-overlay p').textContent
+    }));
+
+    function openLightbox(src, caption) {
+        currentImageIndex = images.findIndex(img => img.src === src);
+        document.getElementById('lightbox').style.display = 'block';
+        document.getElementById('modal-image').src = src;
+        document.getElementById('modal-caption').textContent = caption;
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    function nextImage() {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        const img = images[currentImageIndex];
+        document.getElementById('modal-image').src = img.src;
+        document.getElementById('modal-caption').textContent = img.caption;
+    }
+
+    function prevImage() {
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+        const img = images[currentImageIndex];
+        document.getElementById('modal-image').src = img.src;
+        document.getElementById('modal-caption').textContent = img.caption;
+    }
+
+    // Close lightbox on ESC key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeLightbox();
+        }
+    });
+
+    // Close lightbox on outside click
+    const modal = document.getElementById('lightbox');
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            closeLightbox();
+        }
+    });
+
+    // Contact Form Submit
+    function handleSubmit(event) {
+        event.preventDefault();
+        alert('Thank you for your message! We will get back to you soon.');
+        event.target.reset();
+    }
+
+    // Smooth scroll enhancement
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href !== '#') {
+                e.preventDefault();
+                document.querySelector(href).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
