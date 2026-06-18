@@ -66,3 +66,91 @@
             text-align: center;
             padding: 50px 20px;
         }
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1920x1080?text=Photography');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #FFFFFF;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #34C759;
+            text-shadow: 0 0 20px rgba(52, 199, 89, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #FFFFFF;
+        }
+
+        .hero button {
+            padding: 15px 40px;
+            background: #34C759;
+            border: none;
+            color: #000;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(52, 199, 89, 0.4);
+        }
+
+        .hero button:hover {
+            background: #FFFFFF;
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #34C759;
+            text-shadow: 0 0 15px rgba(52, 199, 89, 0.3);
+        }
+
+        h3 {
+            color: #34C759;
+        }
+
+        /* About Section */
+        #about {
+            background: linear-gradient(135deg, #000, #1a1a1a);
+            color: #FFFFFF;
+        }
+
+        .ceo {
+            margin: 30px auto;
+            padding: 30px;
+            background: rgba(52, 199, 89, 0.1);
+            border-radius: 15px;
+            border: 2px solid #34C759;
+            max-width: 600px;
+        }
+
+        .ceo img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 3px solid #34C759;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .ceo img:hover {
+            transform: scale(1.05);
+        }
+
+        .ceo p {
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
